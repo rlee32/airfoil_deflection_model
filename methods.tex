@@ -10,20 +10,31 @@ Lift without drag therefore voilates Newton's Third Law.
     \draw (-3, 0) coordinate (upstream) node {};
     \draw (3, 0) coordinate (end) node {};
     \draw[dotted] (upstream) -- (end);
+    % Region labels.
+    \node[draw] at (-2.5, 1.5) {Upstream};
+    \node[draw] at (-0.25, 1.5) {At airfoil};
+    \node[draw] at (2.25, 1.5) {Downstream};
+    % vertical dotted lines, separating regions.
+    \draw (-1.5, 2) coordinate (top1) node {};
+    \draw (-1.5, -2) coordinate (bottom1) node {};
+    \draw[dotted] (top1) -- (bottom1);
+    \draw (1, 2) coordinate (top2) node {};
+    \draw (1, -2) coordinate (bottom2) node {};
+    \draw[dotted] (top2) -- (bottom2);
     % upstream vector.
     \draw (-3, 0.25) coordinate (upstream label) node {$V_\infty$};
     \draw (-2, 0) coordinate (upstream tip) node {};
     \draw[->, >=latex] (upstream) -- (upstream tip);
     % airfoil vector.
-    \draw (-0.5, 0) coordinate (airfoil root) node {};
-    \draw (0.43969, -0.34202) coordinate (airfoil tip) node {};
+    \draw (-1, 0) coordinate (airfoil root) node {};
+    \draw (-0.06031, -0.34202) coordinate (airfoil tip) node {};
     \draw[->, >=latex] (airfoil root) -- (airfoil tip);
     \draw pic["", draw=orange, <->, angle eccentricity=1.2, angle radius=0.75cm]
         {angle=airfoil tip--airfoil root--end};
-    \draw (0.75, -0.1) coordinate (airfoil angle label) node {$\phi/2$};
+    \draw (0.25, -0.1) coordinate (airfoil angle label) node {$\phi/2$};
     % downstream vector.
-    \draw (2, 0) coordinate (downstream root) node {};
-    \draw (2.76604, -0.64279) coordinate (downstream tip) node {};
+    \draw (1.4, 0) coordinate (downstream root) node {};
+    \draw (2.16604, -0.64279) coordinate (downstream tip) node {};
     \draw[->, >=latex] (downstream root) -- (downstream tip);
     \draw pic["$\phi$", draw=orange, <->, angle eccentricity=1.2, angle radius=0.75cm]
         {angle=downstream tip--downstream root--end};
