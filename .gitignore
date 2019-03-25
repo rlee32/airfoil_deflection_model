@@ -1,4 +1,4 @@
-paper/*.log
-paper/*.aux
-paper/*.out
+*.log
+*.aux
+*.out
 
