@@ -1,0 +1,115 @@
+\section{Methods}
+
+Newton's Third Law dictates that air must be deflected in opposition to airfoil lift force.
+It will be shown that such deflection also causes drag, which means drag is coupled with lift.
+Lift without drag therefore voilates Newton's Third Law.
+
+\begin{figure}
+\begin{tikzpicture}
+    % horizontal dotted line.
+    \draw (-3, 0) coordinate (upstream) node {};
+    \draw (3, 0) coordinate (end) node {};
+    \draw[dotted] (upstream) -- (end);
+    % upstream vector.
+    \draw (-3, 0.25) coordinate (upstream label) node {$V_\infty$};
+    \draw (-2, 0) coordinate (upstream tip) node {};
+    \draw[->, >=latex] (upstream) -- (upstream tip);
+    % airfoil vector.
+    \draw (-0.5, 0) coordinate (airfoil root) node {};
+    \draw (0.43969, -0.34202) coordinate (airfoil tip) node {};
+    \draw[->, >=latex] (airfoil root) -- (airfoil tip);
+    \draw pic["", draw=orange, <->, angle eccentricity=1.2, angle radius=0.75cm]
+        {angle=airfoil tip--airfoil root--end};
+    \draw (0.75, -0.1) coordinate (airfoil angle label) node {$\phi/2$};
+    % downstream vector.
+    \draw (2, 0) coordinate (downstream root) node {};
+    \draw (2.76604, -0.64279) coordinate (downstream tip) node {};
+    \draw[->, >=latex] (downstream root) -- (downstream tip);
+    \draw pic["$\phi$", draw=orange, <->, angle eccentricity=1.2, angle radius=0.75cm]
+        {angle=downstream tip--downstream root--end};
+\end{tikzpicture}
+    \caption{Vector illustration flow direction changes (angles exaggerated). Vector magnitudes remain the same.}
+\end{figure}
+
+Suppose the portion of the freestream flow that interacts with the airfoil has a mass flow rate of \(\dot{m}\) and a velocity \(V_\infty\).
+If we take the average angle of deflection of the airflow to be \(\phi\), lift (\(L\)) and drag (\(D\)) can be calculated as:
+
+\begin{equation}
+\label{eq:lift}
+    L = \dot{m} V_\infty sin(\phi)
+\end{equation}
+
+\begin{equation}
+D = \dot{m} V_\infty (1 - cos(\phi))
+\label{eq:drag}
+\end{equation}
+
+\begin{equation}
+\frac{L}{D} = \frac{sin(\phi)}{1 - cos(\phi)}
+\end{equation}
+
+Since airfoils in incompressible and inviscid flow can not produce forces parallel to the flow at the airfoil, the relationship between the induced flow angle (\(\gamma\)) and the lift-to-drag ratio is:
+
+\begin{equation}
+\frac{L}{D} = \frac{cos(\gamma)}{sin(\gamma)}
+\end{equation}
+
+Equating the two expressions for lift-to-drag ratio:
+
+\begin{equation}
+\frac{sin(\phi)}{1 - cos(\phi)}
+    = \frac{cos(\gamma)}{sin(\gamma)}
+\end{equation}
+
+Through trigometric identities:
+
+\begin{equation}
+    \gamma = \frac{\phi}{2}
+\end{equation}
+
+The airfoil "sees" the freestream tilted at an angle exactly half that of the full deflection angle downstream of the airfoil.
+
+To relate \(C_N\) and the deflection angle \(\phi\):
+
+\begin{equation}
+\label{eq:force}
+    F = \sqrt{L^2 + D^2}
+\end{equation}
+
+Where \(A_\infty\) is the mass flux area of the freestream that interacts with the airfoil:
+
+\begin{equation}
+\label{eq:mdot}
+    \dot{m} = \rho A_\infty V_\infty
+\end{equation}
+
+Substituting \(\eqref{eq:lift}\), \(\eqref{eq:drag}\), and \(\eqref{eq:mdot}\) into \(\eqref{eq:force}\):
+
+\begin{equation}
+    F = \rho A_\infty V_\infty^2 \sqrt{2 - 2 cos(\phi)}
+\end{equation}
+
+Normalizing \(F\) to \(C_N\):
+
+\begin{equation}
+    C_N = \frac{A_\infty} {A_w} \sqrt{8 - 8 cos(\phi)}
+\end{equation}
+
+The ratio \(A_\infty / A_w\), where \(A_w\) is the reference area of the wing, is the final loose end of Deflection Theory. Unfortunately at present I do not have a physical way to estimate this parameter.
+\(A_\infty / A_w\) may be constant, or dependent on the force exerted on the airfoil, or something else.
+Presently the ratio is chosen arbitrarily as to reasonably match the experimental data to demonstrate Deflection Theory's potential.
+
+We can utilize existing performance prediction methods such as Thin Airfoil Theory and Vortex Panel Method by simply taking their results as the normal force coefficient \(C_N\), instead of, as traditionally assumed, the lift coefficient \(C_L\). For simplicity, we will use Thin Airfoil Theory to obtain a relationship between angle of attack (\(\alpha\)) and \(C_N\):
+
+\begin{equation}
+    C_N = 2 \pi \alpha
+\end{equation}
+
+We must make the distinction between the aerodynamic angle of attack (\(\alpha\)) and the global angle of attack (\(\alpha_g\)):
+
+\begin{equation}
+    \alpha_g = \gamma + \alpha
+\end{equation}
+
+NACA 0009 airfoil data were chosen for comparison, because it is a thin and symmetric airfoil and has publicly available performance data. The minimum drag coefficient from experimental data was added to the Deflection Theory model to account for skin friction and baseline unsteady drag.
+
