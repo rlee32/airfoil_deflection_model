@@ -31,7 +31,7 @@ Lift without drag therefore voilates Newton's Third Law.
     \draw[->, >=latex] (airfoil root) -- (airfoil tip);
     \draw pic["", draw=orange, <->, angle eccentricity=1.2, angle radius=0.75cm]
         {angle=airfoil tip--airfoil root--end};
-    \draw (0.25, -0.1) coordinate (airfoil angle label) node {$\phi/2$};
+    \draw (0.25, -0.1) coordinate (airfoil angle label) node {$\gamma$};
     % downstream vector.
     \draw (1.4, 0) coordinate (downstream root) node {};
     \draw (2.16604, -0.64279) coordinate (downstream tip) node {};
@@ -59,7 +59,14 @@ D = \dot{m} V_\infty (1 - cos(\phi))
 \frac{L}{D} = \frac{sin(\phi)}{1 - cos(\phi)}
 \end{equation}
 
-Since airfoils in incompressible and inviscid flow can not produce forces parallel to the flow at the airfoil, the relationship between the induced flow angle (\(\gamma\)) and the lift-to-drag ratio is:
+We define the induced flow angle, \(\gamma\), to be the change in effective angle of attack due to deflection of the freestream.
+If the airfoil deflects the freestream by \(\phi\), the airfoil sits somewhere in the transition of this deflection and
+will "see" oncoming flow at an angle between 0 and \(\phi\).
+This concept is similar to that widely used in the 3D context, where the effective angle of attack changes due to tip vortices.
+However, there is no model that accounts for changes in effective angle of attack in the 2D context.
+
+Since airfoils in incompressible and inviscid flow can not produce forces parallel to the flow at the airfoil,
+the relationship between (\(\gamma\)) and the lift-to-drag ratio is:
 
 \begin{equation}
 \frac{L}{D} = \frac{cos(\gamma)}{sin(\gamma)}
